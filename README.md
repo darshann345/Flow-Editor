@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# React Product Flow Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that displays products from an external API in a sidebar and visualizes them in a flowchart. The application features a dark/light mode toggle for enhanced user experience.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Product List Display**: Fetches and displays products from the DummyJSON API
+- **Interactive Flowchart**: Visualizes product data in a flowchart format
+- **Dark/Light Mode**: Toggle between dark and light themes
+- **Responsive Layout**: Split-view interface with sidebar and main content area
+- **Styled Components**: Modern styling approach using styled-components
+- **Public Assets**: Includes static assets for enhanced UI presentation
 
-### `npm start`
+## How the Project Works
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This application integrates a product catalog with a flowchart visualization system, all wrapped in a theme-switchable interface.
 
-### `npm test`
+1. **Data Flow**:
+   - The application fetches product data from the DummyJSON API on initial load
+   - Product data is stored in React state and passed to the ProductList component
+   - The FlowChart component visualizes relationships between products
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Component Interaction**:
+   - `App.js`: The main container that manages state and layout
+   - `ProductList`: Renders the sidebar with product information
+   - `FlowChart`: Creates the interactive flowchart visualization
 
-### `npm run build`
+3. **Theme Switching**:
+   - Dark/light mode is toggled via a button in the FlowChart component
+   - The theme state is managed in App.js and passed down to child components
+   - Styled-components use this state to conditionally apply styling
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Public Assets**:
+   - Static assets in the public folder are used throughout the application
+   - These may include product images, icons for the UI, and flowchart elements
+   - Assets are referenced using the public URL path
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Detailed Workflow
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When the application loads:
+1. The `useEffect` hook triggers the `fetchProducts` function
+2. Product data is retrieved from the API and stored in state
+3. The sidebar renders the ProductList with the fetched products
+4. The FlowChart component initializes with the current theme setting
+5. Users can interact with both the product list and flowchart
+6. The theme can be toggled at any time, affecting the entire application's appearance
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js (v14.0.0 or later recommended)
+- npm or yarn package manager
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Clone the repository and install dependencies:
 
-## Learn More
+```bash
+git clone https://github.com/yourusername/react-product-flow.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd react-product-flow
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm install
+```
 
-### Code Splitting
+### Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Start the development server:
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-### Making a Progressive Web App
+## Implementation Details
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Data Fetching
 
-### Advanced Configuration
+The application fetches product data from the [DummyJSON API](https://dummyjson.com/products) and displays it in the sidebar.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Dark Mode Implementation
 
-### Deployment
+Dark mode is implemented using styled-components with props to conditionally apply styles:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```jsx
+const AppContainer = styled.div`
+  display: flex;
+  height: 100vh;
+  background-color: ${props => props.darkMode ? '#222' : '#f0f0f0'};
+  transition: background-color 0.3s ease;
+`;
+```
 
-### `npm run build` fails to minify
+### Using Public Assets
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The application leverages assets from the public folder:
+
+```jsx
+// Example of referencing a public asset
+<img src={`${process.env.PUBLIC_URL}/assets/product-icon.png`} alt="Product" />
+```
+
+## Customization
+
+You can customize the theme colors by modifying the styled-components in App.js:
+
+```jsx
+// For dark mode
+background-color: ${props => props.darkMode ? '#YOUR_DARK_COLOR' : '#YOUR_LIGHT_COLOR'};
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Author
+
+Developed by Darshan N
+
+If you need any additional details or have questions about this project, please feel free to contact me.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [DummyJSON](https://dummyjson.com/) for providing the product API
+- [Create React App](https://github.com/facebook/create-react-app) for the project setup
+- [styled-components](https://styled-components.com/) for the styling solution
+"# Flow-Editor" 
